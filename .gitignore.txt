@@ -1,14 +1,2 @@
-# Archivos compilados de C/C++
-*.o
-*.obj
-
-# Ejecutables
 *.exe
-*.out
-*.app
-
-# Archivos de depuración
-*.log
-
-# Carpetas de compilación (por si usas build)
-build/
+*.o
