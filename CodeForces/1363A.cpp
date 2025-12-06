@@ -28,7 +28,8 @@ int main() {
 
         bool f = false;
 
-        if(x % 2 == 0 && n - im == 0) f = false;
+        if(im == 0) f = false;
+        else if(x % 2 == 0 && n - im == 0) f = false;
         else if(im >= x && x % 2 != 0) f = true;
         else if(im % 2 != 0 && im != 0 && n - im >= 1) f = true;
         else if(im % 2 == 0 && (im - 1 + (n-im) >= x)) f = true;
