@@ -33,8 +33,6 @@ int main() {
         }
 
 
-        vector<int> green;
-
         int ans = 0, current = 0;
 
         bool f = false;
