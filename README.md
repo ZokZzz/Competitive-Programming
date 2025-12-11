@@ -1,1 +1,1 @@
-Algunos ejercicios resueltos en algunas plataformas :D
+Some solved exercises from different platforms :D
