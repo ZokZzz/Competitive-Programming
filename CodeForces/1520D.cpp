@@ -16,29 +16,30 @@ int main() {
 
         int n = 0;
         cin >> n;
-        vector<int> a(n+1);
+        vector<long long> a(n + 1);
 
-        for(int i = 0; i < n; i++) cin >> a[i];
+        for(int i = 1; i <= n; i++) cin >> a[i];
 
+        vector<long long> rest;
 
-        int ans = 0;
+        for(int i = 1; i <= n; i++) rest.pb(a[i] - i);
 
-
-        for(int i = 0, j = i+1; i <= n; i++){
-
-
-            while(j < n) {
-
-                if((a[j] - a[i]) == j - i) ans++;
+        map<long long, long long> cont;
 
 
-                j++;
+        for(auto i : rest){
 
-
-            }
+            cont[i]++;
 
         }
 
+        long long ans = 0;
+
+        for(auto i : cont){
+
+            if(i.second > 1) ans += ( ( i.second * (i.second - 1) ) / 2 );
+
+        }
 
         cout << ans << "\n";
 
