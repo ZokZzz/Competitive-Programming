@@ -32,6 +32,11 @@ int main() {
         }
 
 
+        if(mp[0] == 0) cout << "NO\n";
+        else if(mp[1] > 0) cout << "YES\n";
+        else cout << (mp[0] == 1? "YES" : "NO") << "\n";
+
+
 
 
 
