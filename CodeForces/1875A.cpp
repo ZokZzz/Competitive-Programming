@@ -25,8 +25,16 @@ int main() {
 
         for(int i = 0; i < n; i++) cin >> tools[i];
 
+        long long ans = b;
+
+        for(int i = 0; i < n; i++){
+
+          ans +=  min(a - 1, tools[i]);
+
+        }
 
 
+        cout << ans << "\n";
 
 
 
