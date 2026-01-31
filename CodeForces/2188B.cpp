@@ -30,14 +30,6 @@ int main() {
 
         if(cOne){
 
-             if(n == 2) {
-
-                cout << 1 << "\n";
-                continue;
-
-             }
-
-
 
             int ans = cOne;
 
