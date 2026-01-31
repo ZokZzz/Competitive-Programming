@@ -23,48 +23,81 @@ int main() {
         string s;
         cin >> s;
 
-        vector<int> one;
+        int cOne = 0;
 
-        for(int i = 0; i < n; i++){
+        for(int i = 0; i < n; i++) if(s[i] == '1') cOne++;
 
-                if(s[i] == '1'){
 
-                    one.pb(i);
+        if(cOne){
+
+             if(n == 2) {
+
+                cout << 1 << "\n";
+                continue;
+
+             }
+
+
+
+            int ans = cOne;
+
+            int ul, ur;
+            ul = ur = INF;
+
+
+            for(int i = 0; i < n; i++){
+
+                if(s[i] == '1') {
+                    ul = i;
+                    break;
 
                 }
 
+            }
 
-        }
+            for(int i = 0; i < n; i++){
 
-        if(one.empty()){
+                if(s[i] == '1') {
+                    ur = i;
 
-            cout << (n + 2) / 3 << "\n";
-            continue;
+                }
+
+            }
+
+            vector<int> z;
+
+            int c = 0;
+
+            for(int i = ul; i <= ur; i++){
+
+                if(s[i] == '0'){
+                    c++;
+
+                } else {
+
+                    z.pb(c);
+                    c = 0;
+
+                }
+
+            }
+
+
+            for(int i : z) ans += i / 3;
+
+            ans += ((ul - 0) + 1) / 3;
+            ans += ((n - ur - 1) + 1) / 3;
+
+            cout << ans << "\n";
+
+
+
+
+
 
         } else {
 
-            vector<int> zero;
-
-            zero.pb(one[0] - 0);
-
-            for(int i = 0; i < one.size() - 1; i++){
-
-                zero.pb(one[i + 1] - one[i]);
-
-            }
-
-            zero.pb(n - 1 - one[one.size() - 1]);
-
-            int sum = 0;
-
-            for(int i = 0; i < zero.size(); i++){
-
-                sum += (zero[i] / 2) - 1;
-
-            }
-
-            cout <<  << "\n";
-
+            cout << (n + 2) / 3 << "\n";
 
         }
 
@@ -78,4 +111,3 @@ int main() {
 
     return 0;
 }
-
