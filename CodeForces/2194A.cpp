@@ -25,8 +25,6 @@ int main() {
         cout << n - (n / w) << "\n";
 
 
-
-
     }
 
 
