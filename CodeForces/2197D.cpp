@@ -17,14 +17,34 @@ int main() {
 
     while(t-- > 0){
 
-        int n = 0, x = 0;
-        cin >> n >> x;
+        int n = 0;
+        cin >> n;
 
-        vector<int> a(n);
+        vector<long long> a (n);
+
+        const long long nM = n - 1;
 
         for(int i = 0; i < n; i++) cin >> a[i];
 
+        unordered_set<long long> s, d;
 
+        for(int i = 0; i < n; i++){
+
+            s.insert(nM / a[i]);
+            d.insert(1 / a[i]);
+
+        }
+
+        long long ans = 0;
+
+        for(int i = 0; i < n; i++){
+
+            if(s.count(a[i]) && d.count(a[i])) ans++;
+
+        }
+
+
+        cout << ans << "\n";
 
 
 
@@ -35,5 +55,4 @@ int main() {
 
     return 0;
 }
-
 
