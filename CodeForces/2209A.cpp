@@ -1,0 +1,62 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+#define debug(x) cout<<#x<<": "<<x<<"\n"
+#define all(x) (x).begin(), x.end()
+#define rall(x) (x).rbegin(), x.rend()
+#define INF -1
+#define vi vector<int>
+#define vll vector<long long>
+#define vvi vector<vector<int>>
+
+
+
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(nullptr);
+
+    int t = 0;
+    cin >> t;
+
+    while(t-- > 0){
+
+
+        ll n = 0, c = 0, k = 0;
+        cin >> n >> c >> k;
+
+        vll a (n);
+        for(int i = 0; i < n; i++) cin >> a[i];
+
+        sort(all(a));
+
+        for(int i = 0; i < n; i++){
+
+            if(a[i] <= c){
+
+                ll aux = c - a[i];
+
+                a[i] += min(aux, k);
+
+                k = k - min(aux, k);
+
+                c += a[i];
+
+
+            }
+
+
+        }
+
+
+        cout << c << "\n";
+
+
+    }
+
+
+
+
+    return 0;
+}
+
