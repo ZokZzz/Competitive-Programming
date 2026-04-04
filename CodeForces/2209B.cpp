@@ -21,11 +21,11 @@ int main() {
 
     while(t-- > 0){
 
-        ll n = 0, h = 0;
-        cin >> n >> h;
+        ll n = 0;
+        cin >> n;
 
         vll a(n);
-        for(int i = 0; i < n; i++) cin >> a[i];
+        for(int i = 0, i < n; i++) cin >> a[i];
 
 
 
@@ -39,3 +39,5 @@ int main() {
 
     return 0;
 }
+
+
