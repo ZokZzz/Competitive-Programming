@@ -15,27 +15,11 @@ int main() {
     ios_base::sync_with_stdio(0);
     cin.tie(nullptr);
 
-    long long n = 0;
-    cin >> n;
 
-    vll a(n); for(int i = 0 ; i < n; i++) cin >> a[i];
-
-    long long ans = 0, m = 0;
-
-    for(int i = 0; i < n; i++){
-
-        if(a[i] > m){
-
-            m = a[i];
-            ans++;
-
-        }
-
-    }
-
-    cout << ans << "\n";
 
     return 0;
 }
+
+
 
 
