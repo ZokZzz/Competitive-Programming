@@ -18,49 +18,24 @@ int main() {
     long long n = 0, k = 0;
     cin >> n >> k;
 
-    deque<long long> a;
+    vector<long long> a (k, 0);
 
     for(int i = 0; i < n; i++){
 
         long long aux = 0;
         cin >> aux;
-        a.pb(aux);
+
+        a[aux % k]++;
 
     }
 
+    long long ans = 0;
 
-    long long ans = 0, siz = 0, sum = 0;
+    for(int i = 1; i < (k + 1) / 2; i++) ans += min(a[k - i], a[i]);
 
-    while(a.size() > 2){
+    if(k % 2 == 0)  ans += a[k / 2] / 2;
 
-        sum += a.back();
-
-        siz++;
-
-        if(siz == 2){
-
-            if(sum % k == 0){
-
-                ans++;
-                sum = 0;
-                siz = 0;
-
-            } else {
-
-                sum - a.back();
-                a.push_front(a.back());
-                siz = 1;
-
-            }
-
-
-        }
-
-        a.pop_back();
-
-    }
-
-    if(a.back() + a.front() % k == 0) ans++;
+    ans += a[0] / 2;
 
     cout << ans * 2 << "\n";
 

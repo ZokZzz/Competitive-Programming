@@ -23,7 +23,6 @@ int main() {
     int h2, m2;
     cin >> h2 >> aux >>  m2;
 
-
     int hm1 = (h1 * 60) + m1;
 
     int hm2 = (h2 * 60) + m2;
@@ -37,11 +36,6 @@ int main() {
     if(h3 % 60 > 9) h = false;
 
     cout << (f == true? "0" : "") << h3 / 60 << ":" << (h == true? "0" : "") << h3 % 60 << "\n";
-
-
-
-
-
 
     return 0;
 }
