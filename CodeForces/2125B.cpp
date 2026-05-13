@@ -14,16 +14,14 @@ using namespace std;
 
 void tc(){
 
-    long long n = 0;
-    cin >> n;
+    long long a = 0, b = 0, k = 0;
+    cin >> a >> b >> k;
 
-    vector<long long> a(n);
+    long long g = __gcd(a, b);
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    if(k >= a / g && k >= b / g) cout << 1 << "\n";
+    else cout << 2 << "\n";
 
-    long long ans = (*max_element(all(a))) * n;
-
-    cout << ans << "\n";
 
 }
 
