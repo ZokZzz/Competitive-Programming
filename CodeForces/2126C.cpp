@@ -14,20 +14,33 @@ using namespace std;
 
 void tc(){
 
+    long long n = 0, k = 0, w = 0;
+    cin >> n >> k;
 
-    long long n = 0;
-    cin >> n;
-
-    vector<long long> a (n);
+    vector<long long> a(n), b;
 
     for(int i = 0; i < n; i++) cin >> a[i];
 
-    set<long long> s(all(a));
+    long long valueBegin = a[k - 1], beg = 0;
 
+    b = a;
 
-    if(s.size() == n) cout << "YES\n";
-    else cout << "NO\n";
+    sort(all(b));
 
+    for(int i = 0; i < n; i++) if(b[i] == valueBegin) beg = i;
+
+    for(int i = beg; i < n - 1; i++){
+
+        if( abs(b[i] - b[i + 1]) > b[i] - w){
+
+            cout << "NO\n";
+            return;
+        }
+
+        w += abs(b[i] - b[i + 1]);
+    }
+
+    cout << "YES\n";
 
 }
 
@@ -41,3 +54,4 @@ signed main(){
         tc();
     }
 }
+

@@ -14,30 +14,36 @@ using namespace std;
 
 void tc(){
 
-
     long long n = 0;
     cin >> n;
 
-    vector<long long> a (n);
+    vector<long long> shops (n);
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < n; i++) cin >> shops[i];
 
-    set<long long> s(all(a));
+    long long c = 0;
+    cin >> c;
 
+    vector<long long> coins (c);
 
-    if(s.size() == n) cout << "YES\n";
-    else cout << "NO\n";
+    for(int i = 0; i < c; i++) cin >> coins[i];
+O
+    sort(all(shops));
 
+    for(int i = 0; i < c; i++) cout << (upper_bound(all(shops), coins[i]) - shops.begin()) << "\n";
 
 }
+
+
 
 signed main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t-->0){
         tc();
     }
 }
+

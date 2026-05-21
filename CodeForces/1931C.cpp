@@ -14,20 +14,44 @@ using namespace std;
 
 void tc(){
 
-
     long long n = 0;
     cin >> n;
 
-    vector<long long> a (n);
+    vector<long long> a (n), f(n + 1, 0), d;
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < n; i++){
 
-    set<long long> s(all(a));
+        cin >> a[i];
+
+        f[a[i]]++;
+
+    }
 
 
-    if(s.size() == n) cout << "YES\n";
-    else cout << "NO\n";
+    long long m = (*max_element(all(f))), pos = 0, ans = 0;
 
+    for(int i = 1; i <= n; i++) if(f[i] == m) pos = i;
+
+    for(int i = 0; i < n; i++){
+
+        if(a[i] != pos){
+
+            ans++;
+
+        }
+
+        if(a[i] == pos && ans > 0){
+
+            if(i == n )
+
+        }
+
+
+    }
+
+
+
+    cout << ans << "\n";
 
 }
 
@@ -41,3 +65,4 @@ signed main(){
         tc();
     }
 }
+
