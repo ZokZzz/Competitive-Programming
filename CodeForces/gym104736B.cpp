@@ -10,35 +10,43 @@ using namespace std;
 #define vll vector<long long>
 #define vvi vector<vector<int>>
 #define sz(a) ((int)a.size())
+#define full(x, y) memset(x, y, sizeof(x))
 
-
-vector<int> dp((2e5) + 5, -1);
-
-int f(int i, vector<int> &a){
-
-    if(i == 0) return a[i];
-    else if (i == 1) return a[0] + a[1] - 1;
-
-    if(dp[i] != -1) return dp[i];
-
-
-    int op1 = a[i] - 1 + f(i - 1, a);
-    int op2 = a[i - 1] + max(0, a[i] - i) + f(i - 2, a);
-
-    return dp[i] = min(op1, op2);
-
-}
 
 void tc(){
 
     int n = 0;
     cin >> n;
 
-    vector<int> a(n);
+    map<int, int> f;
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < 3 * n; i++){
 
-    cout << f(n - 1, a) << "\n";
+        int aux;
+        cin >> aux;
+
+        f[aux]++;
+
+    }
+
+    bool h = false;
+
+    for(auto i : f){
+
+        if(i.second % 3 != 0){
+
+            h = true;
+            break;
+
+        }
+
+
+
+    }
+
+    if(h) cout << "Y\n";
+    else cout << "N\n";
+
 
 }
 
@@ -47,9 +55,10 @@ signed main(){
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t-->0){
         tc();
     }
 }
+
 
