@@ -20,28 +20,15 @@ void tc(){
     string s;
     cin >> s;
 
+    vector<int> c (k, 0);
+
+    for(int i = 0; i < n; i++) c[i % k] += s[i] - '0';
+
     bool f = true;
 
-    vector<bool> b(n);
+    for(auto i : c){
 
-    for(int i = 0; i < n; i++) if(s[i] == '1') b[i] = 1; else  b[i] = 0;
-
-    for(int i = 0; i < n - k; i++){
-
-        if(b[i] == 0) continue;
-
-        if(b[i] == 1 && b[i + k] == 1){
-
-            b[i] = 0;
-            b[i + k] = 0;
-
-        }
-
-    }
-
-    for(int i = 0; i < n; i++){
-
-        if(b[i] == 1){
+        if(i % 2 != 0){
 
             f = false;
             break;
@@ -50,8 +37,8 @@ void tc(){
 
     }
 
-    if(f) cout << "YES\n";
-    else cout << "NO\n";
+    cout << (f? "YES" : "NO") << "\n";
+
 
 
 }

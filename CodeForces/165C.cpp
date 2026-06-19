@@ -10,31 +10,44 @@ using namespace std;
 #define vll vector<long long>
 #define vvi vector<vector<int>>
 #define sz(a) ((int)a.size())
+#define full(x, y) memset(x, y, sizeof(x))
 
 
-void tc(){
+bool can(string s, int k, int m){
 
-    long long n = 0;
-    cin >> n;
 
-    vector<long long> shops (n);
 
-    for(int i = 0; i < n; i++) cin >> shops[i];
 
-    long long c = 0;
-    cin >> c;
 
-    vector<long long> coins (c);
 
-    for(int i = 0; i < c; i++) cin >> coins[i];
 
-    sort(all(shops));
-
-    for(int i = 0; i < c; i++) cout << (upper_bound(all(shops), coins[i]) - shops.begin()) << "\n";
 
 }
 
 
+
+void tc(){
+
+    int k = 0;
+    cin >> k;
+
+    string s;
+    cin >> s;
+
+    int l = 0, r = 1000006;
+
+    while(r - l > 1){
+
+        int mid = (l + r + 1) / 2;
+
+        if(can(s, k, mid)) l = mid;
+        else r = mid;
+
+
+    }
+
+
+}
 
 signed main(){
     ios_base::sync_with_stdio(false);

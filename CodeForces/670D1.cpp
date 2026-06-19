@@ -2,54 +2,77 @@
 using namespace std;
 #define ll long long
 #define pb push_back
-#define debug(x) cout<<"x: "<<x<<"\n"
+#define debug(x) cout<<#x<<": "<<x<<"\n"
+#define all(x) (x).begin(), x.end()
+#define rall(x) (x).rbegin(), x.rend()
+#define INF 1e7
+#define vi vector<int>
+#define vll vector<long long>
+#define vvi vector<vector<int>>
+#define sz(a) ((int)a.size())
+#define full(x, y) memset(x, y, sizeof(x))
 
-bool canBake(ll k, vector<ll> &a,  vector<ll> &b, ll n){
-ll p = k;
-for(int i=0; i<a.size(); i++){
-   if(b[i]<a[i]*n){
-    ll missing = (a[i]*n)-b[i];
 
-   if(missing > p){return false;}//if
+bool bake(long long mid, vector<long long>& needed,  vector<long long>& have, long long k){
 
-   p-=missing;
+    long long powder = k;
 
-   }//if
+    for(int i = 0; i < needed.size(); i++){
 
-}//for
+        if(have[i] < (needed[i] * mid)){
 
-return true;
+            long long miss = (needed[i] * mid) - have[i];
+
+            if(miss > powder) return false;
+
+            powder -= miss;
+
+        }
+
+    }
+
+    return true;
+
 }
 
 
+void tc(){
 
-int main(){
-ios_base::sync_with_stdio(0);
-cin.tie(nullptr);
-ll n, k;
-cin>>n>>k;
-vector<ll>a(n), b(n);
-for(int i=0; i<n; i++){
-    cin>>a[i];
-}//for
+    long long n = 0, k = 0;
+    cin >> n >> k;
 
-for(int i=0; i<n; i++){
-    cin>>b[i];
-}//for
+    vector<long long> needed (n), have(n);
+
+    for(int i = 0; i < n; i++) cin >> needed[i];
+
+    for(int i = 0; i < n; i++) cin >> have[i];
 
 
-ll le=0, ri =1000000000;
-while(ri-le>1){
- ll mi = (ri+le)/2;
-  if(canBake(k, a, b, mi)){
-    le = mi;
-  }else{
-    ri = mi;
-  }//if
-}//while
+    long long l = 0, r = INF;
 
-cout<<le<<"\n";
+    while(r - l > 1){
+
+        long long mid = (r + l + 1) / 2;
+
+        if(bake(mid, needed, have, k)) l = mid;
+        else r = mid;
 
 
-return 0;
+
+    }
+
+    cout << l << "\n";
+
+
+}
+
+signed main(){
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(0);
+    int t = 1;
+    //cin >> t;
+    while(t-->0){
+        tc();
+    }
 }
