@@ -13,31 +13,26 @@ using namespace std;
 #define full(x, y) memset(x, y, sizeof(x))
 
 
+
 void tc(){
 
-    long long n = 0;
-    cin >> n;
+    long long n = 0, m = 0;
+    cin >> n >> m;
 
     vector<long long> a (n);
-
     for(int i = 0; i < n; i++) cin >> a[i];
 
-    long long ans = 0;
+    long long M = 0;
 
-    for(int i = 0; i < n; i++) if(a[i] != a[n - 1 - i]) ans++;
-
-    cout << (ans / 2) << "\n";
 
 }
-
-
 
 signed main(){
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t-->0){
         tc();
     }

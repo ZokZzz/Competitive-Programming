@@ -15,22 +15,34 @@ using namespace std;
 
 void tc(){
 
-    long long n = 0;
-    cin >> n;
+    long long a, b, x;
+    cin >> a >> b >> x;
 
-    vector<long long> a (n);
+    long long ans = LONG_MAX;
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    if(x > a && x > b) ans = 2;
 
-    long long ans = 0;
+    if(a == b) ans = 0;
 
-    for(int i = 0; i < n; i++) if(a[i] != a[n - 1 - i]) ans++;
+    long long y = 0;
 
-    cout << (ans / 2) << "\n";
+    while(a != b){
+
+
+        if(b > a) swap(a, b);
+
+        ans = min(ans, abs(a - b) + y);
+        a /= x;
+        y++;
+
+    }
+
+    ans = min(ans, y);
+
+    cout << ans << "\n";
+
 
 }
-
-
 
 signed main(){
     ios_base::sync_with_stdio(false);

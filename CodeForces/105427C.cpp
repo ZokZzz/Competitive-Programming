@@ -15,22 +15,42 @@ using namespace std;
 
 void tc(){
 
-    long long n = 0;
-    cin >> n;
+    string s;
+    cin >> s;
 
-    vector<long long> a (n);
+    map<char, long long> roman = {
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+        {'I', 1},
+        {'V', 5},
+        {'X', 10},
+        {'L', 50},
+        {'C', 100},
+        {'D', 500},
+        {'M', 1000},
 
-    long long ans = 0;
+    };
 
-    for(int i = 0; i < n; i++) if(a[i] != a[n - 1 - i]) ans++;
+    long long ans = roman[s[s.size() - 1]];
 
-    cout << (ans / 2) << "\n";
+    bool f = true;
+
+    long long M = ans;
+
+    for(int i = s.size() - 2; i >= 0; i--){
+
+        if(roman[s[i]] >= M){
+
+            ans += roman[s[i]];
+            M = roman[s[i]];
+
+        } else ans -= roman[s[i]];
+
+
+    }
+
+    cout << ans << "\n";
 
 }
-
-
 
 signed main(){
     ios_base::sync_with_stdio(false);

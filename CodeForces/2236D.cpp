@@ -13,24 +13,37 @@ using namespace std;
 #define full(x, y) memset(x, y, sizeof(x))
 
 
-void tc(){
+bool can(vector<long long>& a, long long k){
 
-    long long n = 0;
-    cin >> n;
 
-    vector<long long> a (n);
+    long long n = a.size();
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    vector<long long> range(k + 1);
 
-    long long ans = 0;
+    for(int i = 0; i <= k; i++) range[i] = i;
 
-    for(int i = 0; i < n; i++) if(a[i] != a[n - 1 - i]) ans++;
+    set<long long> r(all(range));
 
-    cout << (ans / 2) << "\n";
+
+
+
 
 }
 
 
+
+
+void tc(){
+
+    long long n = 0, k = 0;
+    cin >> n >> k;
+
+    vector<long long> a(n); for(int i = 0; i < n; i++) cin >> a[i];
+
+    if(can(a, k)) cout << "YES\n";
+    else cout << "NO\n";
+
+}
 
 signed main(){
     ios_base::sync_with_stdio(false);
