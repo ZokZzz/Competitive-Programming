@@ -18,21 +18,24 @@ void tc(){
     long long n = 0;
     cin >> n;
 
-    vector<long long> a (n);
-
+    vector<long long> a(n), ans;
     for(int i = 0; i < n; i++) cin >> a[i];
 
-    sort(all(a));
+    long long s = 0, m = LONG_MAX;
 
-    long long ans = 0;
+    for(int i = 0; i < n; i++){
 
-    for(int i = 0; i < n; i++) if(a[i] != a[n - 1 - i]) ans++;
+        s += a[i];
 
-    cout << (ans / 2) << "\n";
+        m = min(m, (s / (i + 1)));
+
+        ans.pb(m);
+
+    }
+
+    for(int i = 0; i < ans.size(); i++) cout << ans[i] << (i == ans.size() - 1? "\n" : " ");
 
 }
-
-
 
 signed main(){
     ios_base::sync_with_stdio(false);
@@ -44,4 +47,3 @@ signed main(){
         tc();
     }
 }
-
