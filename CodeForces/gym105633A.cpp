@@ -15,30 +15,33 @@ using namespace std;
 
 void tc(){
 
-    long long n = 0, x = 0, s = 0;
-    cin >> n >> x >> s;
+    long long n = 0;
+    cin >> n;
 
-    string u;
-    cin >> u;
+    vector<long long> a(n);
 
-    long long space = 0, ans = 0, c = 0;
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    for(auto i : u){
+    long long ans = 0;
 
-
-        if(i == 'I' || i == 'A' && x > 0){
-
-            space += s - 1;
-            x--;
-            c++;
-
-        }
+    vector<bool> vis (n, 0);
 
 
-        if(i == 'E' && space > 0){
+    for(int i = 0; i < n; i++){
 
-            space--;
-            ans++;
+
+        if(vis[i]) continue;
+
+        long long color = a[i];
+
+        ans++;
+
+        for(int j = i; j < n; j++){
+
+            if(a[j] == color) vis[j] = 1;
+
+            if(a[j] < color) break;
+
 
         }
 
@@ -46,10 +49,8 @@ void tc(){
     }
 
 
-    cout << ans + c << "\n";
 
-
-
+    cout << ans << "\n";
 
 }
 
@@ -58,7 +59,7 @@ signed main(){
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t-->0){
         tc();
     }
