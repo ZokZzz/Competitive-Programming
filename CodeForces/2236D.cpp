@@ -15,26 +15,45 @@ using namespace std;
 
 void tc(){
 
-    long long n = 0, k = 0;
+    ll n, k;
     cin >> n >> k;
 
-    vector<long long> a(n); for(int i = 0; i < n; i++) cin >> a[i];
+    vll a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
 
     sort(all(a));
 
-    bool f = 1;
+    ll x = a.back();
+    a.pop_back();
 
-    long long x = a[0];
+    bool egor = true;
 
-    for(int i = 1; i < n; i++){
+    while(!a.empty()){
+
+        if(a.back() <= k + x){
+
+            x = a.back();
+
+        } else {
+
+            egor = !egor;
+            break;
+
+        }
 
 
-
-
-
-
+        egor = !egor;
+        a.pop_back();
 
     }
+
+
+
+
+    if(egor) cout << "YES\n";
+    else cout << "NO\n";
+
+
 
 
 }
