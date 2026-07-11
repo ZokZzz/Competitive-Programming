@@ -15,28 +15,11 @@ using namespace std;
 
 void tc(){
 
-    long long n = 0, k = 0;
-    cin >> n >> k;
+    ll l = 0, r = 0;
+    cin >> l >> r;
 
-    vector<long long> a(n); for(int i = 0; i < n; i++) cin >> a[i];
-
-    sort(all(a));
-
-    bool f = 1;
-
-    long long x = a[0];
-
-    for(int i = 1; i < n; i++){
-
-
-
-
-
-
-
-    }
-
-
+    if(l == 1 && r == 1) cout << 1 << "\n";
+    else cout << (r - l) << "\n";
 }
 
 signed main(){
