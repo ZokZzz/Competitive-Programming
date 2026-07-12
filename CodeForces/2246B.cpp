@@ -21,37 +21,10 @@ using namespace std;
 
 void tc(){
 
-    ll n = 0, k = 0;
-    cin >> n >> k;
+    ll n = 0;
+    cin >> n;
 
-    vll a(n);
-    mii m;
-    for(int i = 0; i < n; i++){
-
-        cin >> a[i];
-        m[a[i]]++;
-
-    }
-
-    sort(all(a));
-
-    if(m[a[n - 1]] % 2 == 1){
-
-        cout << "YES\n";
-        return;
-    }
-
-    if(a[n - 1] - a[n - 2] < k){
-
-        cout << "YES\n";
-        return;
-
-    } else {
-
-        cout << "NO\n";
-
-    }
-
+    
 
 }
 
