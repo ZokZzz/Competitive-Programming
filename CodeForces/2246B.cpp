@@ -24,7 +24,19 @@ void tc(){
     ll n = 0;
     cin >> n;
 
-    
+    if(n == 2){
+
+        cout << -1 << "\n";
+        return;
+
+    }
+
+    vll ans = {1, 2, 3};
+
+    for(int i = 0; i < 48; i++) ans.pb(ans.back() * 2);
+
+    for(int i = 0; i < n; i++) cout << ans[i] << " ";
+    cout << "\n";
 
 }
 
