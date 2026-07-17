@@ -5,7 +5,7 @@ using namespace std;
 #define debug(x) cout<<#x<<": "<<x<<"\n"
 #define all(x) (x).begin(), x.end()
 #define rall(x) (x).rbegin(), x.rend()
-#define INF -1
+#define INF -1e6
 #define vi vector<int>
 #define vll vector<long long>
 #define vb vector<bool>
@@ -26,39 +26,54 @@ using namespace std;
 
 
 vvi g;
-vb vis;
-vi parent;
-int start;
-int en;
 
-bool dfs(int u, int p){
+vi memo(1e6, -1);
 
-    vis[u] = 1;
+int target;
+
+
+
+int longestPath(int u){
+
+    if(u == target) return 0;
+
+    if(memo[u] != -1) return memo[u];
+
+    int best = INF;
 
     for(int v : g[u]){
 
-        if(v != p){
+        int value = longestPath(v);
 
-            if(!vis[v]){
+        if(value == INF) continue;
 
-                parent[v] = u;
+        best = max(best, value + 1);
 
-                if(dfs(v, u)) return true;
-
-            } else {
-
-                start = u;
-                en = v;
-                return true;
-
-            }
-
-
-        }
 
     }
 
-    return false;
+    return memo[u] = best;
+
+
+}
+
+void make(int u, vi &ans){
+
+    ans.pb(u);
+
+    if(u == target) return;
+
+    for(int v : g[u]){
+
+        if(memo[v] == memo[u] - 1){
+
+            make(v, ans);
+            return;
+
+        }
+
+
+    }
 
 }
 
@@ -70,8 +85,8 @@ void tc(){
 
 
     g.resize(n);
-    vis.resize(n);
-    parent.assign(n, -1);
+
+    target = n - 1;
 
     for(int i = 0; i < m; i++){
 
@@ -80,52 +95,32 @@ void tc(){
         a--; b--;
 
         g[a].pb(b);
-        g[b].pb(a);
 
 
     }
 
-    bool ok = false;
 
-    for(int i = 0; i < n; i++){
+    int tam = longestPath(0);
 
-        if(!vis[i]){
+    if(tam == INF){
 
-            if(dfs(i, -1)) {
+        cout << "IMPOSSIBLE\n";
+        return;
 
-                ok = true;
-                break;
-
-            }
-
-        }
 
     }
 
-    if(ok){
 
-        vector<int> cycle;
+    cout << tam + 1 << "\n";
 
-        cycle.push_back(en);
+    vi ans;
 
-        int cur = start;
+    make(0, ans);
 
-        while(cur != en){
-            cycle.push_back(cur);
-            cur = parent[cur];
-        }
+    ans.pb(n - 1);
 
-        cycle.push_back(en);
-
-        reverse(cycle.begin(), cycle.end());
-
-        cout << cycle.size() << "\n";
-        for(int i = 0; i < cycle.size(); i++) cout << cycle[i] + 1 << " ";
-        cout << "\n";
-
-
-
-    } else cout << "IMPOSSIBLE\n";
+    for(int i = 0; i < ans.size(); i++) cout << ans[i] + 1 << " ";
+    cout << "\n";    
 
 
 }
