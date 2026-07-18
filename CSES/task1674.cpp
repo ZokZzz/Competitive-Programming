@@ -75,27 +75,19 @@ void tc(){
     cin >> n;
 
     g.assign(n, vi({}));
-    r.assign(n, 0);
-    dp.assign(n, 0);
+
 
     for(int i = 0; i < n - 1; i++){
 
-        int a = 0, b = 0;
-        cin >> a >> b;
-        a--; b--;
+        int aux = 0;
+        cin >> aux;
 
-        g[a].pb(b);
-        g[b].pb(a);
+        g[aux - 1].pb(i + 1);
+        g[i + 1].pb(aux - 1);
 
     }
 
-    dfs(0, -1);
-
-    int ans = 0;
-
-    for(auto i : r) ans = max(ans, i);
-
-    cout << ans - 1 << "\n";
+    
 
 }
 

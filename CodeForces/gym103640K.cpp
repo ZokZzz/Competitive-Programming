@@ -34,68 +34,54 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-vvi g;
-vi r;
-vi dp;
-
-void dfs (int u, int p){
-
-    if(g[u].size() == 1 && p != -1){
-
-        r[u] = 1; dp[u] = 0; return;
-
-    }
-
-    int mx1 = 0, mx2 = 0;
-
-    for(auto v : g[u]){
-
-        if(v == p) continue;
-
-        dfs(v, u);
-
-        mx2 = max(mx2, dp[v] + 1);
-        if(mx2 > mx1) swap(mx1, mx2);
-
-
-    }
-
-    r[u] = mx1 + mx2 + 1;
-
-    dp[u] = mx1;
-
-    return;
-
-}
-
 
 void tc(){
 
     int n = 0;
     cin >> n;
 
-    g.assign(n, vi({}));
-    r.assign(n, 0);
-    dp.assign(n, 0);
+    set<char> firstLetter;
 
-    for(int i = 0; i < n - 1; i++){
+    vector<string> words(n);
 
-        int a = 0, b = 0;
-        cin >> a >> b;
-        a--; b--;
+    for(int i = 0; i < n; i++){
 
-        g[a].pb(b);
-        g[b].pb(a);
+        string aux;
+        cin  >> aux;
+        words[i] = aux;
+        firstLetter.insert(aux[0]);
 
     }
 
-    dfs(0, -1);
+    for(auto i : words){
 
-    int ans = 0;
+        bool f = true;
 
-    for(auto i : r) ans = max(ans, i);
+        for(int j = 0; j < i.size(); j++){
 
-    cout << ans - 1 << "\n";
+            
+
+            if(firstLetter.find(i[j]) == firstLetter.end()){
+
+                f = false;
+                break;
+
+            }
+
+        }
+
+        if(f){
+
+            cout << "Y\n";
+            return;
+
+        }
+
+
+    }
+
+    cout << "N\n";
+    
 
 }
 
