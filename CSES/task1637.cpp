@@ -34,43 +34,60 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-vll h, s;
-vvi memo(2);
+vi dp;
 
-int f(int n, int w){
+vi digits(int u){
 
-  
+    vi d;
 
-    for(int i = n - 1; i >= 0; i--){
+    string s = to_string(u);
 
-        for(int j = 0; j <= w; j++) memo[i % 2][j] = max(memo[(i + 1) % 2][j], memo[(i + 1) % 2][j - s[i]] + h[i]);
+    for(char i : s) d.pb(i - '0');
+
+    return d;
+}
+
+
+int dfs(int u){
+
+
+    if(u == 0) return 0;
+
+    if(dp[u] != -1) return dp[u];
+
+    int best = oo;
+
+    for(int d : digits(u)){
+
+        if(d == 0) continue;
+
+        int nu = u - d;
+
+        if(nu < 0) continue;
+
+        int value = dfs(nu);
+
+        best = min(best, value + 1);
 
 
     }
 
-
+    return dp[u] = best;
 
 }
 
 
-
 void tc(){
 
-    ll n = 0, x = 0;
-    cin >> n >> x;
+    int n = 0;
+    cin >> n;
 
-    h.assign(n, 0);
-    s.assign(n, 0);
+    dp.assign(1e8, -1);
 
-    for(int i = 0; i < n; i++) cin >> h[i];
-    
-    for(int i = 0; i < n; i++) cin >> s[i];
+    int ans = dfs(n);
 
-    int best = f(0, x);
-
-    cout << best << "\n";
-    
-
+    cout << ans << "\n";
+  
 
 }
 
