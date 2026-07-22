@@ -34,39 +34,45 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
+vi dp(1e7, -1), coins;
 
-void tc(){
+const int mod = 1e9 + 7;
 
-    ll n = 0, x = 0;
-    cin >> n >> x;
+ll n = 0, x = 0;
 
-    vll h(n), s(n); // s : peso, h : valor
+int f (int i){
 
-    for(int i = 0; i < n; i++) cin >> h[i];
-    
-    for(int i = 0; i < n; i++) cin >> s[i];
+    if(i == x) return 1;
 
-    vvll dp(2, vll (x + 1, 0));
+    if(dp[i] != -1) return dp[i];
 
-    for(ll i = n - 1; i >= 0; i--){
+    int ans = 0;
 
-        for(ll w = 0; w <= x; w++){
+    for(int j = 0; j < coins.size(); j++){
 
-            ll o1 = 0;
-
-            if(w >= h[i]) o1 = dp[(i + 1) % 2][w - h[i]] + s[i];
-
-            ll o2 = dp[(i + 1) % 2][w];
-
-            ll best = max(o1, o2);
-
-            dp[i % 2][w] = best;
-
-        }
+        if(i + coins[j] <= x && i >= coins[j]) ans = (f(i + coins[j]) + ans) % mod;
 
     }
 
-    cout << dp[0][x] << "\n";
+    return dp[i] = ans;
+
+
+
+}
+
+void tc(){
+
+    cin >> n >> x;
+
+    coins.assign(n, 0);
+
+    for(int i = 0; i < n; i++) cin >> coins[i];
+
+    int ans = f(0);
+
+    cout << ans << "\n";
+   
+  
 
 }
 
@@ -80,3 +86,45 @@ signed main(){
         tc();
     }
 }
+
+
+
+/*#include<bits/stdc++.h>
+using namespace std;
+#define ll long long
+#define pb push_back
+#define debug(x) cout<<#x<<": "<<x<<"\n"
+ 
+ 
+ll n=1, x=1;
+vector<ll>memo(1e6, -1);
+ 
+const ll mod = 1e9 + 7;
+ 
+ll coin(int i, vector<ll> &coins) {
+    if (i == x) {
+       return 1;
+    }
+ 
+    if(memo[i]!=-1) return memo[i];
+ 
+    ll ans=0;
+    for (int j = 0; j<coins.size(); j++) {
+        if (i+coins[j]<=x) {
+            ans = (coin(i+coins[j], coins)+ans)%mod;
+        }
+    }
+    return memo[i] = ans;
+}
+ 
+int main() {
+    ios_base::sync_with_stdio(0);
+    cin.tie(nullptr);
+
+    cin>>n>>x;
+    vector<ll>coins(n);
+    for(int i=0; i<n; i++) cin>>coins[i];
+    ll ans = coin(0, coins);
+    cout<<(ans)<<"\n";
+    return 0;
+}*/
