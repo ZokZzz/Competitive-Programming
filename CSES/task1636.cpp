@@ -34,46 +34,39 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-vi dp(1e7, -1), coins;
 
 const int mod = 1e9 + 7;
 
-ll n = 0, x = 0;
-
-int f (int i){
-
-    if(i == x) return 1;
-
-    if(dp[i] != -1) return dp[i];
-
-    int ans = 0;
-
-    for(int j = 0; j < coins.size(); j++){
-
-        if(i + coins[j] <= x && i >= coins[j]) ans = (f(i + coins[j]) + ans) % mod;
-
-    }
-
-    return dp[i] = ans;
-
-
-
-}
 
 void tc(){
 
+    ll n = 0, x = 0;
+
     cin >> n >> x;
 
-    coins.assign(n, 0);
+    vll c(n);
 
-    for(int i = 0; i < n; i++) cin >> coins[i];
+    for(int i = 0; i < n; i++) cin >> c[i];
 
-    int ans = f(0);
+    vvll dp (2, vll(x + 1, 0));
 
-    cout << ans << "\n";
-   
-  
+    dp[n % 2][x] = 1;
 
+    for(int i = n - 1; i >= 0; i--){
+
+        for(int w = x; w >= 0; w--){
+
+            dp[i % 2][w] = dp[(i + 1) % 2][w];
+
+            if(w + c[i] <= x) dp[i % 2][w] = (dp[i % 2][w] + dp[i % 2][w + c[i]]) % mod;
+
+        }
+
+    }
+
+    cout << dp[0][0] << "\n";
+
+    
 }
 
 signed main(){
@@ -87,44 +80,6 @@ signed main(){
     }
 }
 
-
-
-/*#include<bits/stdc++.h>
-using namespace std;
-#define ll long long
-#define pb push_back
-#define debug(x) cout<<#x<<": "<<x<<"\n"
  
  
-ll n=1, x=1;
-vector<ll>memo(1e6, -1);
  
-const ll mod = 1e9 + 7;
- 
-ll coin(int i, vector<ll> &coins) {
-    if (i == x) {
-       return 1;
-    }
- 
-    if(memo[i]!=-1) return memo[i];
- 
-    ll ans=0;
-    for (int j = 0; j<coins.size(); j++) {
-        if (i+coins[j]<=x) {
-            ans = (coin(i+coins[j], coins)+ans)%mod;
-        }
-    }
-    return memo[i] = ans;
-}
- 
-int main() {
-    ios_base::sync_with_stdio(0);
-    cin.tie(nullptr);
-
-    cin>>n>>x;
-    vector<ll>coins(n);
-    for(int i=0; i<n; i++) cin>>coins[i];
-    ll ans = coin(0, coins);
-    cout<<(ans)<<"\n";
-    return 0;
-}*/
