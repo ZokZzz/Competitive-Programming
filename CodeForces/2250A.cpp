@@ -38,65 +38,36 @@ using namespace std;
 
 void tc(){
 
-    ll n; cin >> n;
+   int n = 0;
+   cin >> n;
 
-    vll a(n), b(n);
+   vll a(n); 
+   for(int i = 0; i < n; i++) cin >> a[i];
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+   if(n % 2 == 1){
 
-    for(int i = 0; i < n; i++) cin >> b[i];
-
-    bool f = true;
-
-    for(int i = 0; i < n; i++) if(a[i] != b[i]){f = false; break;}
-
-    if(f){
-
-        cout << 0 << "\n";
+        cout << "NO\n";
         return;
 
-    }
+   }
 
-    ll can = 0;
+   ll mr = oo + 7, ml = 0;
 
-    for(int i = 0; i < n; i++) if(a[i] == 1 && b[i] == 0) can++;
+   for(int i = 0; i < n; i++){
 
-    if(!can){
+        if(i % 2) ml = max(ml, a[i]);
+        else mr = min(mr, a[i]);
 
-        cout << -1 << "\n";
-        return;
+   }
 
-    }
+   if(mr - ml > 1 && mr != a[n - 1] && ml != a[0]) cout << "YES\n";
+   else cout << "NO\n";
 
-    ll ans = 0, debt = 0;
-
-    for(int i = 0; i < n; i++){
-
-        if(a[i] == b[i]){
-
-
-            if(0 > debt){
-
-                cout << -1 << "\n";
-                return;
-
-            }
-
-        }
-
-        if(a[i] == 0 && b[i] == 1)
-
-
-
-
-    }
-
-
-
-   cout << ans << "\n";
-
-    
+  
 }
+   
+    
+
 
 signed main(){
     ios_base::sync_with_stdio(false);
