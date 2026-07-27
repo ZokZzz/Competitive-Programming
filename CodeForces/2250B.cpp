@@ -35,42 +35,50 @@ using namespace std;
 #define memfull(x, y) memset(x, y, sizeof(x))
 
 
-
 void tc(){
 
-    ll n; cin >> n;
+    int n = 0, k = 0;
+    cin >> n >> k;
 
-    vll a(n), b(n);
+    string ans;
 
-    for(int i = 0; i < n; i++) cin >> a[i];
+    for(int i = 0; i < (n % 2 == 0? n / 2 : (n / 2) + 1); i++) ans.pb('1');
 
-    for(int i = 0; i < n; i++) cin >> b[i];
+    int m = ans.size();
 
+    for(int i = m; i < n; i++) ans.pb('0');
 
-    if(a == b){
+    int c = 0, del = 0;
 
-        cout << 0 << "\n";
-        return;
+    m = ans.size();
+
+    for(int i = 1; i < m; i++){ 
+    
+        if(ans[i] == ans[i - 1]) c++;
+
+        if(c > k){
+
+            ans.insert(ans.begin(), ans[i]);
+            del++;
+
+        }
 
     }
 
+    while(del--) ans.pop_back();
 
-    if(accumulate(all(a), 0) == 0 || accumulate(all(b), 0) == n){
+    debug(ans);
 
-        cout << -1 << "\n";
-        return;
+    
 
-    }
-
-    ll s = 0;
-
-    for(int i = 0; i < n; i++) if(a[i] != b[i]) s += a[i];
-
-    if(s % 2 == 1) cout << 1 << "\n";
-    else cout << 2 << "\n";
+    
 
 
+  
 }
+   
+    
+
 
 signed main(){
     ios_base::sync_with_stdio(false);
