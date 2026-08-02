@@ -15,6 +15,8 @@ using namespace std;
 #define vvpll vector<vector<pair<long long, long long>>>
 #define pii pair<int, int>
 #define pll pair<long long, long long>
+#define si set<int>
+#define sll set<long long>
 #define sti stack<int>
 #define stll stack<long long>
 #define stc stack<char>
@@ -34,32 +36,40 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
+bool stable(int a, int b){
+
+    vi sides1 = {a, b, b};
+    vi sides2 = {a, b, a};
+
+    sort(all(sides1));
+    sort(all(sides2));
+
+    if(sides1[0] + sides1[1] <= sides1[2] || sides2[0] + sides2[1] <= sides2[2]) return false;
+
+    return true;
+
+
+
+}
+
 
 void tc(){
 
-    int n = 0, k = 0;
-    cin >> n >> k;
+    int n = 0;
+    cin >> n;
 
-    string ans;
+    vi a(n);
 
-    for(int i = 0; i < (n % 2 == 0? n / 2 : (n / 2) + 1); i++) ans.pb('1');
+    bool f = false;
 
-    int m = ans.size();
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    for(int i = m; i < n; i++) ans.pb('0');
+    for(int i = 0; i < n - 1; i++)  if(stable(a[i], a[i + 1])) f = true;
 
-    
+    if(f) cout << "YES\n";
+    else cout << "NO\n";
 
-    
-
-    
-
-
-  
 }
-   
-    
-
 
 signed main(){
     ios_base::sync_with_stdio(false);
@@ -71,7 +81,3 @@ signed main(){
         tc();
     }
 }
-
- 
- 
- 

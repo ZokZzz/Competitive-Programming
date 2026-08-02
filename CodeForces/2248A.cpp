@@ -37,29 +37,36 @@ using namespace std;
 
 void tc(){
 
-    int n = 0, k = 0;
-    cin >> n >> k;
+    string s;
+    cin >> s;
 
-    string ans;
+    for(int i = 0; i < s.size(); i++){
 
-    for(int i = 0; i < (n % 2 == 0? n / 2 : (n / 2) + 1); i++) ans.pb('1');
+        if(s[i] == '0'){
 
-    int m = ans.size();
+            s.erase(i, 1);
+            break;
 
-    for(int i = m; i < n; i++) ans.pb('0');
+        }
 
-    
+    }
 
-    
+    for(int i = 0; i < s.size(); i++){
 
-    
+        if(s[i] == '1'){
+
+            s.erase(i, 1);
+            break;
+
+        }
+
+    }
 
 
-  
-}
+    cout << s << "\n";
    
-    
 
+}
 
 signed main(){
     ios_base::sync_with_stdio(false);
@@ -71,7 +78,3 @@ signed main(){
         tc();
     }
 }
-
- 
- 
- 

@@ -37,25 +37,28 @@ using namespace std;
 
 void tc(){
 
-    int n = 0, k = 0;
-    cin >> n >> k;
+    int n = 0;
+    cin >> n;
 
-    string ans;
+    vi a(n, 0);
 
-    for(int i = 0; i < (n % 2 == 0? n / 2 : (n / 2) + 1); i++) ans.pb('1');
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    int m = ans.size();
-
-    for(int i = m; i < n; i++) ans.pb('0');
-
-    
-
-    
-
-    
+    int m = *min_element(all(a)), M = *max_element(all(a));
 
 
-  
+    if(m != M){
+
+        cout << -1 << "\n";
+        return;
+
+    }
+
+    cout << n << " ";
+
+    for(int i = 1; i <= n - 1; i++) cout << i << " ";
+    cout << "\n";
+
 }
    
     

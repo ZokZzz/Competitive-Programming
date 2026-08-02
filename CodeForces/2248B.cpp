@@ -15,6 +15,8 @@ using namespace std;
 #define vvpll vector<vector<pair<long long, long long>>>
 #define pii pair<int, int>
 #define pll pair<long long, long long>
+#define si set<int>
+#define sll set<long long>
 #define sti stack<int>
 #define stll stack<long long>
 #define stc stack<char>
@@ -37,29 +39,24 @@ using namespace std;
 
 void tc(){
 
-    int n = 0, k = 0;
-    cin >> n >> k;
+    int n = 0, m = 0;
+    cin >> n >> m;
 
-    string ans;
+    vi a(n), b(m);
 
-    for(int i = 0; i < (n % 2 == 0? n / 2 : (n / 2) + 1); i++) ans.pb('1');
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    int m = ans.size();
+    for(int i = 0; i < m; i++) cin >> b[i];
 
-    for(int i = m; i < n; i++) ans.pb('0');
+    sort(all(a)); sort(all(b));
 
-    
+    int mb = *min_element(all(b));
+    int Mb = *max_element(all(b));
 
-    
+    if(a[0] <= mb && a[n - 1] >= Mb && n >= 2 * m) cout << "YES\n";
+    else cout << "NO\n";
 
-    
-
-
-  
 }
-   
-    
-
 
 signed main(){
     ios_base::sync_with_stdio(false);
@@ -71,7 +68,3 @@ signed main(){
         tc();
     }
 }
-
- 
- 
- 
