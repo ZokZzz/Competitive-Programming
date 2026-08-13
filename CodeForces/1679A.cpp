@@ -39,18 +39,30 @@ using namespace std;
 
 void tc(){
 
-    int a = 0, b = 0, c = 0;
-    cin >> a >> b >> c;
+   ll n = 0;
+   cin >> n;
 
-    a = min(a, b + c);
-    b = min(b, a + c);
-    c = min(c, a + b);
+   if(n % 2 == 1 || n < 4){
 
+        cout << -1 << "\n";
+        return;
 
-    int ans = max(a, max(b, c)) - min(a, min(b, c));
+   }
 
-    cout << ans << "\n";
+   ll M = 0;
 
+   if(n % 4 == 0) M = n / 4;
+   else if (n % 4 == 2) M = ((n - 6) / 4) + 1;
+
+   ll m = 0;
+
+   if(n % 6 == 0) m = n / 6;
+   else if(n % 6 == 2) m = ((n - 8) / 6) + 2;
+   else if(n % 6 == 4) m = ((n - 4) / 6) + 1;
+
+   cout << m << " " << M << "\n";
+
+ 
 }
 
 signed main(){
