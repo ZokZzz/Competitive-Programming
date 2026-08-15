@@ -11,6 +11,7 @@ using namespace std;
 #define vb vector<bool>
 #define vvi vector<vector<int>>
 #define vvll vector<vector<long long>>
+#define vpii vector<pair<int, int>>
 #define vvpii vector<vector<pair<int, int>>>
 #define vvpll vector<vector<pair<long long, long long>>>
 #define pii pair<int, int>
@@ -42,23 +43,54 @@ void tc(){
     int n = 0;
     cin >> n;
 
-    vi l, r;
+    vpii pairs (n);
 
-    string ans;
+    vi use (2 * n + 5, 1), c(2 * n + 5, 0);
 
     for(int i = 0; i < n; i++){
 
         int a = 0, b = 0;
         cin >> a >> b;
 
-        l.pb(a);
-        r.pb(b);
+        pairs[i] = {a, b};
 
+        if(a == b){
+
+            use[a] = 0;
+            c[a]++;
+
+        }
 
     }
 
+    vi ps;
+
+    ps.pb(use[0]);
+
+    for(int i = 1; i < use.size(); i++) ps.pb(use[i] + ps.back());
+
+    string ans;
+
+    for(int i = 0; i < n; i++){
+
+        int a = pairs[i].first, b =  pairs[i].second;
+
+        if(a == b){
+
+            if(c[a] == 1) ans.pb('1');
+            else ans.pb('0');
+
+        } else {
+
+            if(ps[b] - (a - 1 >= 0? ps[a - 1] : 0) > 0) ans.pb('1');
+            else ans.pb('0');
 
 
+        }
+
+    }
+
+    cout << ans << "\n";
 
 }
 
