@@ -62,7 +62,6 @@ void tc(){
    if(B >= V) cout << 1 << "\n";
    else cout << 2 << "\n";
 
-    
 
 }
 

@@ -40,10 +40,65 @@ using namespace std;
 
 void tc(){
 
-    ll n = 0, k = 0;
-    cin >> n >> k;
+    int n = 0;
+    cin >> n;
 
-    
+    vi parent(n + 1);
+
+    parent[1] = 0;
+
+    for(int v = 2; v <= n; v++) cin >> parent[v];
+
+    int m = 0;
+    cin >> m;
+
+    vi d(m);
+
+    vb isD(n + 1, false);
+
+    for(int i = 0; i < m; i++){
+
+        cin >> d[i];
+        isD[d[i]] = true;
+
+    }
+
+    int k = m - 1;
+
+    vb hd(n + 1);
+
+    for(int v = 2; v <= n; v++){
+
+        hd[v] = hd[parent[v]] || isD[parent[v]];
+
+    }
+
+    int no = -1;
+
+    for(int v : d){
+
+        if(!hd[v]){
+
+            no = v;
+            break;
+
+        }
+
+    }
+
+    if(k == 0){
+
+        cout << 0 << "\n";
+        return;
+
+    }
+
+    cout << k << " ";
+
+    for(int v : d) if(v != no) cout << v << " ";
+
+    cout << "\n";
+
 
 }
 

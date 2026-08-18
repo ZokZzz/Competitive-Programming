@@ -80,11 +80,6 @@ void tc(){
 
    if(f) cout << "YES\n";
    else cout << "NO\n";
-
-
-
-
-
     
 
 }
