@@ -11,8 +11,6 @@ using namespace std;
 #define vb vector<bool>
 #define vvi vector<vector<int>>
 #define vvll vector<vector<long long>>
-#define vpii vector<pair<int, int>>
-#define vpll vector<pair<long long, long long>>
 #define vvpii vector<vector<pair<int, int>>>
 #define vvpll vector<vector<pair<long long, long long>>>
 #define pii pair<int, int>
@@ -39,31 +37,52 @@ using namespace std;
 #define memfull(x, y) memset(x, y, sizeof(x))
 
 
+int mex(vi a){
+
+    int M = *max_element(all(a));
+
+    si s(all(a));
+
+    for(int i = 0; i <= M; i++){
+
+        if(s.count(i) == 0) return i;
+
+    }
+
+
+    return M  + 1;
+
+
+}
+
+
+
 void tc(){
 
     int n = 0;
     cin >> n;
 
-    vll cnt(1e5 + 7, 0);
+    vi a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    vll a(n); for(int i = 0; i < n; i++){
+    vi a1;
 
-        cin >> a[i];
-        cnt[a[i]]++;
+    for(int i = 0; i < n / 2; i++) a1.pb(a[i]);
 
-    }
+    vi a2;
 
-    ll N = *max_element(all(a));
+    for(int i = n / 2; i < n; i++) a2.pb(a[i]);
 
-    vll f(1e5 + 7, 0);
+    if(mex(a1) == mex(a2)){
 
-    f[1] = cnt[1];
+        cout << 2 << "\n";
 
-    for(ll i = 2; i <= n; i++) f[i] = max(f[i - 1], f[i - 2] + cnt[i] * i);
+        cout << 1 << " " << n / 2 << "\n";
+        cout << n / 2 << " " << n << "\n";
 
-    ll ans = f[n];
 
-    cout << ans << "\n";
+    } else cout << -1 << "\n";
+  
 
 }
 
@@ -72,7 +91,7 @@ signed main(){
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    //cin >> t;
+    cin >> t;
     while(t-->0){
         tc();
     }
