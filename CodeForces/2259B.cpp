@@ -41,46 +41,40 @@ using namespace std;
 
 void tc(){
 
-    int n = 0;
-    cin >> n;
+   int n = 0;
+   cin >> n;
 
-    string s;
-    cin >> s;
+   vi a(n);
+   for(int i = 0; i < n; i++) cin >> a[i];
 
-    bool f = false;
+   int ans = 1;
 
-    int ans = 0, c = 0;
+   int ci = 0, c4 = 0;
 
-    for(int i = 0; i < n; i++){
+   vi f(*max_element(all(a)) + 1, 0);
 
-        if(s[i] == 'B'){
+   for(int i = 0; i < n; i++){
 
-            if(f) c++;
+        if(a[i] % 2) ci++;
 
-            if(c > 0) f = true;
+        if(a[i] % 4 == 0) c4++;
 
-            ans += c;
+        f[a[i]]++;
 
-            c = 0;
+   }
 
-        } else {
+   int cm = *max_element(all(f));
 
-            c++;
+   ans = max(ans, max(ci, max(c4, cm)));
 
-        }
-
-
-    }
-
-   
-    cout << ans << "\n";
+   cout << ans << "\n";
 
 }
 
 signed main(){
-    ios_base::sync_with_stdio(false);
+    /*ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-    cout.tie(0);
+    cout.tie(0);*/
     int t = 1;
     cin >> t;
     while(t-->0){

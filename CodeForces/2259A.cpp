@@ -41,38 +41,30 @@ using namespace std;
 
 void tc(){
 
-    int n = 0;
-    cin >> n;
+    int n = 0, k = 0;
+    cin >> n >> k;
 
     string s;
     cin >> s;
 
-    bool f = false;
+    int ans = 0;
 
-    int ans = 0, c = 0;
+    int c = 0;
 
     for(int i = 0; i < n; i++){
 
-        if(s[i] == 'B'){
+        if(s[i] == '1') c++;
 
-            if(f) c++;
+        if((i + 1) % k == 0){
 
-            if(c > 0) f = true;
-
-            ans += c;
+            if(c == k) ans++;
 
             c = 0;
 
-        } else {
-
-            c++;
-
         }
-
 
     }
 
-   
     cout << ans << "\n";
 
 }
