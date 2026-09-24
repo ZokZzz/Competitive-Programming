@@ -38,43 +38,67 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-const int mod = 998244353;
+
 
 void tc(){
 
-    int n = 0;
-    cin >> n;
+    int n = 0, m = 0;
+    cin >> n >> m;
 
-    string s;
-    cin >> s;
+    vi a(n);
 
-    s.pb('?');
-    s.pb('?');
+    for(int i = 0; i < n; i++) cin >> a[i];
 
+    if(n == 1){
 
-    for(int i = 0; i < n - 2; i++){
+        cout << a.back() << "\n";
+        return;
 
-        if(s[i] == s[i + 2] && s[i] != '?'){
+    }
 
-            cout << 0 << "\n";
-            return;
+    if(m == 1){
+
+        cout << *max_element(all(a)) << "\n";
+        return;
+
+    }
+
+    if(m == n){
+
+        ll ans = 0;
+        for(int i = 0; i < n - 1; i++){
+
+            ans += (a[i] * (-1));
 
         }
 
-    }
+        ans += m * a[n - 1];
 
-    int ans = 0;
-
-    for(int i = 0; i < 2; i++){
-
-        if(s[i] == '?')  ans += 2;
+        cout << ans << "\n";
+        return;
 
 
     }
 
-    if(!ans) ans = 1;
-        
-    cout << ans % mod << "\n";
+    map<int, int, greater<int>()> res;
+
+    int M = 0, idx = 0;
+
+    for(int i = m - 1; i < n; i++) if(a[i] > M){M = a[i]; idx = i;}
+
+    for(int i = 0; i < idx; i++) res[a[i]] = i;
+
+    sort(all(res), greater<int>());
+
+    ll ans = 0;
+
+    if(!res.empty()) for(int i = 0; i < m - 1; i++) ans += res[i];
+
+    ans += m * (M);
+
+    cout << ans << "\n";
+
+
 
 }
 
@@ -88,3 +112,4 @@ signed main(){
         tc();
     }
 }
+ 

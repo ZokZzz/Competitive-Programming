@@ -38,43 +38,71 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-const int mod = 998244353;
+
 
 void tc(){
 
-    int n = 0;
-    cin >> n;
+    ll n = 0, k = 0;
+    cin >> n >> k;
 
-    string s;
-    cin >> s;
+    vll a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    s.pb('?');
-    s.pb('?');
+    sort(all(a));
 
+    sll s(all(a));
 
-    for(int i = 0; i < n - 2; i++){
+    vi check(*s.rbegin() + 1, 0);
 
-        if(s[i] == s[i + 2] && s[i] != '?'){
+    for(auto i : s){
 
-            cout << 0 << "\n";
-            return;
+        check[i] = 1;
+
+    }
+
+    ll ans = 0, l = 0, r = n - 1;
+
+    for(int i = 0; i < check.size(); i++){
+
+        if(check[i] == 0){
+
+            l = i;
+            break;
 
         }
 
     }
 
-    int ans = 0;
+      for(int i = check.size() - 1; i > -1; i--){
 
-    for(int i = 0; i < 2; i++){
+        if(check[i] == 1){
 
-        if(s[i] == '?')  ans += 2;
+            r = i;
+            break;
 
+        }
 
     }
 
-    if(!ans) ans = 1;
-        
-    cout << ans % mod << "\n";
+    ans = l;
+
+    while(r - l > 1 && k > 0){
+
+        if(check[l] = 0 && check[r] == 1){
+
+            k--;
+            ans++;
+            l++;
+
+        }
+
+        r--;
+
+    }
+
+    
+
+    cout << ans << "\n";
 
 }
 
@@ -83,8 +111,9 @@ signed main(){
     cin.tie(nullptr);
     cout.tie(0);
     int t = 1;
-    cin >> t;
+    //cin >> t;
     while(t-->0){
         tc();
     }
 }
+ 

@@ -38,43 +38,31 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-const int mod = 998244353;
+
 
 void tc(){
 
     int n = 0;
     cin >> n;
 
-    string s;
-    cin >> s;
-
-    s.pb('?');
-    s.pb('?');
+    vi a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
 
 
-    for(int i = 0; i < n - 2; i++){
+    if(is_sorted(all(a)) || is_sorted(all(a), greater<int>())){
 
-        if(s[i] == s[i + 2] && s[i] != '?'){
-
-            cout << 0 << "\n";
-            return;
-
-        }
+        cout << "YES\n";
+        return;
 
     }
 
-    int ans = 0;
+   vi b;
 
-    for(int i = 0; i < 2; i++){
+   for(int i = 0; i < n; i++) if(a[i] != i + 1) b.pb(a[i]);
 
-        if(s[i] == '?')  ans += 2;
-
-
-    }
-
-    if(!ans) ans = 1;
-        
-    cout << ans % mod << "\n";
+    if(is_sorted(all(b)) || is_sorted(all(b), greater<int>())) cout << "YES\n";
+    else cout << "NO\n";
+    
 
 }
 

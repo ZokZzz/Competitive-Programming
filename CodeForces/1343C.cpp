@@ -38,43 +38,47 @@ using namespace std;
 #define sz(a) ((int)a.size())
 #define memfull(x, y) memset(x, y, sizeof(x))
 
-const int mod = 998244353;
+
 
 void tc(){
 
-    int n = 0;
+    ll n = 0;
     cin >> n;
 
-    string s;
-    cin >> s;
+    vll a(n);
+    for(int i = 0; i < n; i++) cin >> a[i];
 
-    s.pb('?');
-    s.pb('?');
+    sll s;
+    s.insert(a[0]);
 
+    bool sign = (a[0] > 0);
 
-    for(int i = 0; i < n - 2; i++){
+    ll ans = 0;
 
-        if(s[i] == s[i + 2] && s[i] != '?'){
+    for(int i = 1; i < n; i++){
 
-            cout << 0 << "\n";
-            return;
+        bool aux = (a[i] > 0);
+        if (aux == sign){
+
+            s.insert(a[i]);
+
+        } else {
+
+            sign = !sign;
+
+            ans += *s.rbegin();
+
+            s.clear();
+
+            s.insert(a[i]);
 
         }
 
     }
 
-    int ans = 0;
+    if(!s.empty()) ans += *s.rbegin();
 
-    for(int i = 0; i < 2; i++){
-
-        if(s[i] == '?')  ans += 2;
-
-
-    }
-
-    if(!ans) ans = 1;
-        
-    cout << ans % mod << "\n";
+    cout << ans << "\n";
 
 }
 
@@ -88,3 +92,4 @@ signed main(){
         tc();
     }
 }
+ 
